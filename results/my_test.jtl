@@ -1,0 +1,14 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1564138296129,562,Load Home Page,200,OK,Thread Group 1-1,text,true,,4360,120,1,1,https://app.octoperf.com/,560,0,505
+1564138296726,680,Login Request,200,,Thread Group 1-1,text,true,,187,275,1,1,https://api.octoperf.com/public/users/login,679,0,518
+1564138297471,175,Get WorkSpace Details,200,,Thread Group 1-1,text,true,,3532,246,1,1,https://api.octoperf.com/workspaces/member-of,175,0,0
+1564138297729,365,CreateNewProject,201,Project has been created successfully,Thread Group 1-1,text,true,,630,522,1,1,https://api.octoperf.com/design/projects?workspaceId=NWA2I2wB6ANMBjnldN-k,364,0,0
+1564138298185,752,CreateNewProject,201,Project has been created successfully,Thread Group 1-1,text,true,,630,522,1,1,https://api.octoperf.com/design/projects?workspaceId=NWA2I2wB6ANMBjnldN-k,752,0,460
+1564138298986,768,CreateNewProject,201,Project has been created successfully,Thread Group 1-1,text,true,,630,522,1,1,https://api.octoperf.com/design/projects?workspaceId=NWA2I2wB6ANMBjnldN-k,768,0,490
+1564138299796,692,CreateNewProject,201,Project has been created successfully,Thread Group 1-1,text,true,,630,522,1,1,https://api.octoperf.com/design/projects?workspaceId=NWA2I2wB6ANMBjnldN-k,691,0,468
+1564138300554,741,CreateNewProject,201,Project has been created successfully,Thread Group 1-1,text,true,,630,522,1,1,https://api.octoperf.com/design/projects?workspaceId=NWA2I2wB6ANMBjnldN-k,741,0,471
+1564138301344,742,CreateNewProject,201,Project has been created successfully,Thread Group 1-1,text,true,,630,522,1,1,https://api.octoperf.com/design/projects?workspaceId=NWA2I2wB6ANMBjnldN-k,741,0,458
+1564138302128,766,CreateNewProject,201,Project has been created successfully,Thread Group 1-1,text,true,,630,522,1,1,https://api.octoperf.com/design/projects?workspaceId=NWA2I2wB6ANMBjnldN-k,766,0,467
+1564138302925,723,Querying Project,200,,Thread Group 1-1,text,true,,2648,282,1,1,https://api.octoperf.com/design/projects/by-workspace/NWA2I2wB6ANMBjnldN-k/DESIGN,723,0,461
+1564138303657,306,Edit Workspace Name,200,,Thread Group 1-1,text,true,,636,504,1,1,https://api.octoperf.com/workspaces/NWA2I2wB6ANMBjnldN-k,305,0,0
+1564138303977,2,Debug Sampler,200,OK,Thread Group 1-1,text,true,,648,0,1,1,null,0,0,0
