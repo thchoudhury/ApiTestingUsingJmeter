@@ -7,7 +7,7 @@ This document provides guidelines and examples for testing of RESTful APIs.
 * Newman-html-reporter using **npm i -g newman-reporter-html**
 
 # Run Test using CLI
-* in terminal, run the below command
+* In terminal, run the below command
 	__newman run tests/my_test.json -r html --reporter-html-export reports/test_result.html__
 	 
 	 where  --reporter-html-export <path> denotes path where the output HTML file will be written to disk.
@@ -15,4 +15,4 @@ This document provides guidelines and examples for testing of RESTful APIs.
 
 
 
-** All test results are found under reports/test_result.html**
+**All test results are found under reports/test_result.html**
