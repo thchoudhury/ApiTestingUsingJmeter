@@ -1,0 +1,691 @@
+{
+	"info": {
+		"_postman_id": "df743b7b-392c-43b5-a0dc-db5598018c48",
+		"name": "OctoPerf",
+		"description": "OctoPerf is a bootstrapped company, made by independent performance geeks.\nWhich is why all our efforts are directed to the product.\nWe provide real support to our customers within minutes.\nRegister for a free account and find out for yourself.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "LoginRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78f58ac3-19bf-441d-a7b0-406eb1c8dd36",
+								"exec": [
+									"var responseCode = pm.response.code;",
+									"",
+									"if (responseCode == 200) {",
+									"    pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"}); ",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"pm.test(\"Authorization Token is stored for further use\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    postman.setEnvironmentVariable(\"authorizationToken\", jsonData.token);",
+									"    ",
+									"});",
+									"",
+									"",
+									"var schema = {",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"token\": {",
+									"      \"type\": \"string\"",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"token\"",
+									"  ]",
+									"}",
+									"",
+									"pm.test('Schema is valid for Response', function() {",
+									"  pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;",
+									"});",
+									"pm.globals.set(\"AuthToken\", pm.response.json().token);",
+									"",
+									"} else {",
+									"",
+									"pm.test(\"Status Code is 400 if username is null\", function() {",
+									"    pm.globals.unset(\"username\", \"\");",
+									"    pm.response.to.have.status(400);",
+									"})",
+									"pm.globals.set(\"AuthToken\", \"Not Available\");",
+									"",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f3b2ec5e-c640-44af-ad24-3fd8350daf90",
+								"exec": [
+									"pm.globals.set(\"username\", \"tania@alumnux.com\");",
+									"pm.globals.set(\"password\", \"Tan!a@1991\");",
+									"postman.setNextRequest(\"AddProject\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{ContentType}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.octoperf.com/public/users/login",
+							"protocol": "https",
+							"host": [
+								"api",
+								"octoperf",
+								"com"
+							],
+							"path": [
+								"public",
+								"users",
+								"login"
+							]
+						},
+						"description": "To Log on to OctoPerf"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cb131533-2016-40cb-823d-03fa802d4787",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status Code is 415 if Content-type is null\") , function() {",
+							"    pm.request.headers.add({key: 'Content-Type', value: '' }) ",
+							"    pm.response.to.have.status(401);",
+							"}",
+							"",
+							"pm.test(\"Status Code is 415 if Content-type is garbage value\") , function() {",
+							"    pm.request.headers.add({key: 'Content-Type', value: 'sffaerer' }) ",
+							"    pm.response.to.have.status(401);",
+							"}",
+							"",
+							"pm.test(\"Status Code is 415 if Content-type is missing\") , function() {",
+							"    pm.request.headers.delete({key: 'Content-Type', value: 'sffaerer' }) ",
+							"    pm.response.to.have.status(401);",
+							"}"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "db3cc824-6a81-4c99-83dc-23130d4ad614",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Workspaces Activity",
+			"item": [
+				{
+					"name": "GetAllWorkspaceDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85cc7453-9268-4c4f-8d8b-f1c2fa4be072",
+								"exec": [
+									"var AuthToken = pm.globals.get(\"AuthToken\");",
+									"if (AuthToken !== 'Not Available') {",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"var responseTime = pm.response.responseTime;",
+									"if (responseTime > 200) {",
+									"    pm.test(\"Response time is more than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.above(200);",
+									"});    ",
+									"} else {",
+									"    pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"}",
+									"",
+									"var schema = {",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"created\": {",
+									"          \"type\": \"integer\"",
+									"        },",
+									"        \"description\": {",
+									"          \"type\": \"string\"",
+									"        },",
+									"        \"id\": {",
+									"          \"type\": \"string\"",
+									"        },",
+									"        \"lastModified\": {",
+									"          \"type\": \"integer\"",
+									"        },",
+									"        \"name\": {",
+									"          \"type\": \"string\"",
+									"        },",
+									"        \"userId\": {",
+									"          \"type\": \"string\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"created\",",
+									"        \"description\",",
+									"        \"id\",",
+									"        \"lastModified\",",
+									"        \"name\",",
+									"        \"userId\"",
+									"      ]",
+									"};",
+									"",
+									"pm.test('Schema is valid', function() {",
+									"  pm.expect(tv4.validate(pm.response.json()[0], schema)).to.be.true;",
+									"});",
+									"pm.test(\"To check deafult workspace id\", function () {",
+									"    var jsonData = pm.response.json()[0];",
+									"    workspaceId = pm.globals.get(\"workspaceId\"); ",
+									"    pm.expect(jsonData.id).to.eql(workspaceId);",
+									"});",
+									"",
+									"pm.globals.set(\"workspaceId\",pm.response.json()[0].id);",
+									"",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c3b56135-9f78-484a-9c6d-8d2ac7b48f2a",
+								"exec": [
+									"postman.setNextRequest(null);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{ContentType}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AuthToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.octoperf.com/workspaces/member-of",
+							"protocol": "https",
+							"host": [
+								"api",
+								"octoperf",
+								"com"
+							],
+							"path": [
+								"workspaces",
+								"member-of"
+							]
+						},
+						"description": "To Show all the workspaces "
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project Activity ",
+			"item": [
+				{
+					"name": "GetProjectDetails",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "afda08d4-117a-4478-9086-aa1d9657c689",
+								"exec": [
+									"pm.globals.get(\"workspaceId\");",
+									"postman.setNextRequest(\"AddProject\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6836855f-e80f-4698-9c5f-c265d52d7d88",
+								"exec": [
+									"var AuthToken = pm.globals.get(\"AuthToken\");",
+									"",
+									"if (AuthToken !== 'Not Available'){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check If new project Added to list\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var projectNameArray = [];",
+									"    projectName = pm.globals.get(\"projectName\");",
+									"    jsonData.forEach((item) => {",
+									"        projectNameArray.push(item.name);",
+									"    })",
+									"    pm.expect(projectNameArray).to.include(projectName);",
+									"});",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "{{ContentType}}",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{AuthToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"\",\n    \"created\": \"2019-07-22T07:50:12.755Z\",\n    \"lastModified\": \"2019-07-22T07:50:12.755Z\",\n    \"userId\": \"pEGWCGwBjlTPLZEzy_-G\",\n    \"workspaceId\": \"{{workspaceId}}\",\n    \"name\": \"{{projectName}}\",\n    \"description\": \"{{description}}\",\n    \"type\": \"DESIGN\"\n}"
+						},
+						"url": {
+							"raw": "https://api.octoperf.com/design/projects/by-workspace/{{workspaceId}}/DESIGN",
+							"protocol": "https",
+							"host": [
+								"api",
+								"octoperf",
+								"com"
+							],
+							"path": [
+								"design",
+								"projects",
+								"by-workspace",
+								"{{workspaceId}}",
+								"DESIGN"
+							]
+						},
+						"description": "Get All Project Details under Deafult Workspace"
+					},
+					"response": []
+				},
+				{
+					"name": "AddProject",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "afda08d4-117a-4478-9086-aa1d9657c689",
+								"exec": [
+									"pm.globals.set(\"workspaceId\", \"q0eWCGwB6ANMBjnly4Xn\");",
+									"pm.globals.set(\"projectName\", \"TestProject4\");",
+									"pm.globals.set(\"description\", \"Project is running under test\");",
+									"",
+									"postman.setNextRequest(\"EditProjectName\");",
+									"//pm.environment.set(\"authorizationToken\", responseJson.token);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6836855f-e80f-4698-9c5f-c265d52d7d88",
+								"exec": [
+									"var AuthToken = pm.globals.get(\"AuthToken\");",
+									"",
+									"if (AuthToken !== 'Not Available'){",
+									"    pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+									"});",
+									"",
+									"pm.globals.set(\"createdProjectID\", pm.response.json().id);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AuthToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"\",\n    \"created\": \"2019-07-22T07:50:12.755Z\",\n    \"lastModified\": \"2019-07-22T07:50:12.755Z\",\n    \"userId\": \"pEGWCGwBjlTPLZEzy_-G\",\n    \"workspaceId\": \"{{workspaceId}}\",\n    \"name\": \"{{projectName}}\",\n    \"description\": \"{{description}}\",\n    \"type\": \"DESIGN\"\n}"
+						},
+						"url": {
+							"raw": "https://api.octoperf.com/design/projects?workspaceId={{workspaceId}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"octoperf",
+								"com"
+							],
+							"path": [
+								"design",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "workspaceId",
+									"value": "{{workspaceId}}"
+								}
+							]
+						},
+						"description": "Add Project under deafult workspace"
+					},
+					"response": []
+				},
+				{
+					"name": "EditProjectName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "afda08d4-117a-4478-9086-aa1d9657c689",
+								"exec": [
+									"pm.globals.set(\"projectName\", \"New Test Project 12\");",
+									"postman.setNextRequest(\"DeleteProject\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "28fdb300-c732-432f-8cc3-10313148e438",
+								"exec": [
+									"var AuthToken = pm.globals.get(\"AuthToken\");",
+									"",
+									"if (AuthToken !== 'Not Available'){",
+									"    pm.test(\"Updated Project Name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    projectName = pm.globals.get(\"projectName\"); ",
+									"    pm.expect(jsonData.name).to.eql(projectName);",
+									"});",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "{{ContentType}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{AuthToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"created\":1563781812755,\"description\":\"Project is running under test\",\"id\":\"a1jlGGwB5tgkpL6TQv30\",\"lastModified\":1563785773812,\"name\":\"{{projectName}}\",\"type\":\"DESIGN\",\"userId\":\"pEGWCGwBjlTPLZEzy_-G\",\"workspaceId\":\"q0eWCGwB6ANMBjnly4Xn\"}"
+						},
+						"url": {
+							"raw": "https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"octoperf",
+								"com"
+							],
+							"path": [
+								"design",
+								"projects",
+								"{{createdProjectID}}"
+							],
+							"query": [
+								{
+									"key": "workspaceId",
+									"value": "{{workspaceId}}"
+								}
+							]
+						},
+						"description": "Edit Project Name"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProject",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "afda08d4-117a-4478-9086-aa1d9657c689",
+								"exec": [
+									"postman.setNextRequest(\"GetAllWorkspaceDetails\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c8e421f-4a24-477d-a7bc-c3d157cb6bea",
+								"exec": [
+									"var AuthToken = pm.globals.get(\"AuthToken\");",
+									"",
+									"if (AuthToken !== 'Not Available'){",
+									"    pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "{{ContentType}}"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{AuthToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"octoperf",
+								"com"
+							],
+							"path": [
+								"design",
+								"projects",
+								"{{createdProjectID}}"
+							],
+							"query": [
+								{
+									"key": "workspaceId",
+									"value": "{{workspaceId}}"
+								}
+							]
+						},
+						"description": "Delete Project under deafult workspace"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4ed0aeae-a15b-4ca7-aefb-45c101e45246",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status Code is 401 if Auth Token is null\") , function() {",
+							"    pm.request.headers.add({key: 'Authorization', value: '' }) ",
+							"    pm.response.to.have.status(401);",
+							"}",
+							"",
+							"pm.test(\"Status Code is 401 if Auth Token is Garbage Value\") , function() {",
+							"    pm.request.headers.add({key: 'Authorization', value: 'assas' }) ",
+							"    pm.response.to.have.status(401);",
+							"}",
+							"",
+							"pm.test(\"Status Code is 401 if Auth Token is not present\") , function() {",
+							"    pm.request.headers.delete({key: 'Authorization', value: 'assas' }) ",
+							"    pm.response.to.have.status(401);",
+							"}",
+							"",
+							"pm.test(\"Status Code is 415 if Content-type is null\") , function() {",
+							"    pm.request.headers.add({key: 'Content-Type', value: '' }) ",
+							"    pm.response.to.have.status(401);",
+							"}",
+							"",
+							"pm.test(\"Status Code is 415 if Content-type is garbage value\") , function() {",
+							"    pm.request.headers.add({key: 'Content-Type', value: 'sffaerer' }) ",
+							"    pm.response.to.have.status(401);",
+							"}",
+							"",
+							"pm.test(\"Status Code is 415 if Content-type is missing\") , function() {",
+							"    pm.request.headers.delete({key: 'Content-Type', value: 'sffaerer' }) ",
+							"    pm.response.to.have.status(401);",
+							"}",
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3016092e-d282-4e4c-9c0d-9b123b73c6d0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a78e69af-125b-4b51-863b-119dea338b1a",
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set('ContentType', 'application/json;charset=UTF-8');",
+					"",
+					"// pm.sendRequest('https://api.octoperf.com//public/users/login', function (err, res) {",
+					"//     if (err) {",
+					"//         console.log(err);",
+					"//     } else {",
+					"//         pm.environment.set(\"authToken\", res.json().token);",
+					"//     }",
+					"// });"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0c61a09b-3034-444f-8688-c6e4cc28ab98",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
