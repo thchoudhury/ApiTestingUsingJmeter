@@ -1,5 +1,5 @@
 # API Testing Using Postman
-This document provides guidelines and examples for testing of RESTful APIs.
+This document provides instruction of testing of RESTful APIs using Postman and Newman(if CLI is used)
 
 # Install Postman and Newman 
 * Download Postman from <https://www.getpostman.com/apps>
