@@ -18,7 +18,9 @@ Here, APIs of Octoperf websites has been tested using Postman and Newman(if CLI 
   
 * Open Terminal and Go to Desktop and Copy-Paste the below command
 
-   > cd ApiTestingUsingJmeterAndPostman\UsingPostman 
+    ```
+    cd ApiTestingUsingJmeterAndPostman\UsingPostman 
+   ```
 
 ## Prerequisites
 
@@ -27,18 +29,23 @@ Here, APIs of Octoperf websites has been tested using Postman and Newman(if CLI 
 
 2. Open Terminal and run the below command to install Newman
 
-   > npm install -g newman
+   ```
+   npm install -g newman
+   ```
    
 3. In terminal, run the below command to install Newman-html-reporter
 
-   > npm i -g newman-reporter-html
+     ```
+     npm i -g newman-reporter-html
+    ```
 
 ## To Run Tests
 
 1. To run test using Newman, run below command in Terminal
 
-   > newman run tests\my_test.json
-
+    ```
+    newman run tests\my_test.json
+    ```
 
 ## List of Tested REST APIs
 
