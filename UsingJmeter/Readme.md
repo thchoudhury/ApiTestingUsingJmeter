@@ -1,38 +1,142 @@
-# Api Testing Using Jmeter
+# API Testing Using Jmeter 
 
-## Dependencies
+## Overview
+Here, APIs of Octoperf websites has been tested using Jmeter.
+
+
+## Getting Started
+
+* Open Terminal in your local system and redirect to Desktop
+
+  > ```cd Desktop```
+
+* Copy and Paste the below command
+
+  > ```git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>```
+
+
+## Prerequisites
+ ### Install Jmeter
+ #### Dependencies
 1. Install JAVA(8+)
+2. Downalod [Jmeter 5.1.1](http://jmeter.apache.org/download_jmeter.cgi) in Desktop
+3. Download [plugins-manager.jar](https://jmeter-plugins.org/get/) and put it into lib/ext directory, then restart JMeter.
+4. Install below plugin: a)JSON/YAML Plugins (deprecated) The installer will also install several JMeter Plugins, which can be used directly or within a continuous integration server such as Jenkins
 
-## Install JMeter and JMeter plugins
-1. Downalod Jmeter (http://jmeter.apache.org/download_jmeter.cgi).
-2. Download plugins-manager.jar(https://jmeter-plugins.org/get/) and put it into lib/ext directory, then restart JMeter.
-3. Install below plugin: a)JSON/YAML Plugins (deprecated)
-The installer will also install several JMeter Plugins, which can be used directly or within a continuous integration server such as Jenkins
 
-## Open Tests in JMeter
-**apache-jmeter-5.1.1/bin/jmeter.sh -t tests/my_test.jmx**
-This will load the JMeter GUI. This very simple test hits <https://api.octoperf.com> 1 time, with 1 user
+## To Run Tests
 
-## Run the tests with Command-R
-See results by clicking in any of the Graph or Tree nodes
-Stop tests with Command-period
-Clear results with Command-E
-Running Headless Tests
-Especially in a continuous integration server, you'll want to run JMeter tests "headlessly", i.e. without a graphical user interface.
+1. Open Terminal and Go to Desktop and Copy-Paste the below command
 
-## To Run In Non-GUI mode:
-**apache-jmeter-5.1.1/bin/jmeter.sh -n -t tests/my_test.jmx -l results/my_test.jtl**
-Let's break this down:
+   > cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+   
+2. To run the test in Jmeter, run the below command in Terminal. 
 
--t tests/my_test.jmx is the test to run
--n results/my_test.jtl tells JMeter to run in non-gui mode
--l provides the path where JMeter will write the test results.
+      **UserName should be replaced before executing command**
+      
+   > jmeter -n -t C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\tests\my_test.jmx -l C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl
 
-**Warning: JMeter logging and results appends**
-When specifying a log file or .jtl output file, be aware that JMeter appends, not overwrites.
 
-## To Generate HTML Report:
-apache-jmeter-5.1.1/bin/jmeter.sh -g results/my_test.jtl -o reports/my_test_report
+## List of Tested REST APIs
 
-**All test result and graph details can be found in reports/my_test_report/index.html**
+#### Login API : For logging into the website with valid id and password
+* HTTP Method: POST
+* API:  https://api.octoperf.com/public/users/login
+* Body (form-data): username(string) && password(string)
+* Response Code: 200 
+* Response Data: {'token': <Generated Token Value (string format)>}
+
+Here, token is stored in variable **AuthToken** for further use.
+
+#### Get All Workspace Details : To get all the workspace details for the logged in user
+* HTTP Method: GET
+* API:  https://api.octoperf.com/workspaces/member-of
+* Headers:
+    * Content-Type: application/json;charset=UTF-8
+    * Authorization: Bearer {{AuthToken}}
+* Response Code: 200 
+* Response Data: Return all the workspace details.
+
+Here, random 'id' for workspace is stored in variable **workspaceId** for further use.
+
+#### Get All Project Details : To get all the proejct details under specified workspaceid for the logged in user
+* HTTP Method: GET
+* API:  https://api.octoperf.com/design/projects/by-workspace/{{workspaceId}}/DESIGN
+* Headers:
+    * Content-Type: application/json;charset=UTF-8
+    * Authorization: Bearer {{AuthToken}}
+* Response Code: 200 
+* Response Data: Return all the project details under specified workspace id.
+
+#### To Create New Project : To create new project under specified workspaceid for the logged in user
+* HTTP Method: POST
+* API:  https://api.octoperf.com/design/projects?workspaceId={{workspaceId}}
+* Headers:
+    * Content-Type: application/json;charset=UTF-8
+    * Authorization: Bearer {{AuthToken}}
+* Body: 
+    ```{
+    "id": "",
+    "created": "2019-07-22T07:50:12.755Z",
+    "lastModified": "2019-07-22T07:50:12.755Z",
+    "userId": "pEGWCGwBjlTPLZEzy_-G",
+    "workspaceId": "{{workspaceId}}",
+    "name": "{{projectName}}",
+    "description": "{{description}}",
+    "type": "DESIGN"
+   ```
+* Response Code: 200 
+* Response Data: A project will be created under specified workspace id. A unique id is also generated for the project. 
+
+Here, the unique 'id' for new project is stored in variable **createdProjectID** for further use.
+
+#### To Edit Created Project Name : To edit any project name under specified workspaceid for the logged in user
+* HTTP Method: PUT
+* API: https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
+* Headers:
+    * Content-Type: application/json;charset=UTF-8
+    * Authorization: Bearer {{AuthToken}}
+* Body: 
+    ```{
+    "created": 1563781812755,
+    "description": "Project is running under test",
+    "id": "a1jlGGwB5tgkpL6TQv30",
+    "lastModified": 1563785773812,
+    "name": "{{projectName}}",
+    "type": "DESIGN",
+    "userId": "pEGWCGwBjlTPLZEzy_-G",
+    "workspaceId": "q0eWCGwB6ANMBjnly4Xn"
+   ```
+* Response Code: 200 
+* Response Data: Project name will be created for specified project id. 
+
+#### To Delete Existing Project: To delete any existing project
+* HTTP Method: DELETE
+* API:  https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
+* Headers:
+    * Content-Type: application/json;charset=UTF-8
+    * Authorization: Bearer {{AuthToken}}
+* Response Code: 204
+* Response Data: None
+
+
+## To Generate Test Report
+
+ #### Using Jmeter
+ 
+ 1. Open Terminal and Go to Desktop and Copy-Paste the below command
+ 
+    > cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+    
+2. To run the test and generate report using Jmeter, run the below command in Terminal.
+
+     **UserName should be replaced before executing command**
+   
+   > jmeter -g C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl -o C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report
+   
+3. Generated HTML Report can be found in 
+
+   C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report\index.html
+   
+Test result is generated in html format.
 
