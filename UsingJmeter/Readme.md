@@ -8,11 +8,15 @@ Here, APIs of Octoperf websites has been tested using Jmeter.
 
 * Open Terminal in your local system and redirect to Desktop
 
-  > ```cd Desktop```
+   ```
+   cd Desktop
+   ```
 
 * Copy and Paste the below command
 
-  > ```git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>```
+  ```
+  git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>
+  ```
 
 
 ## Prerequisites
@@ -28,13 +32,17 @@ Here, APIs of Octoperf websites has been tested using Jmeter.
 
 1. Open Terminal and Go to Desktop and Copy-Paste the below command
 
-   > cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+   ```
+   cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+   ```
    
 2. To run the test in Jmeter, run the below command in Terminal. 
 
       **UserName should be replaced before executing command**
       
-   > jmeter -n -t C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\tests\my_test.jmx -l C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl
+    ```
+    jmeter -n -t C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\tests\my_test.jmx -l C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl
+    ```
 
 
 ## List of Tested REST APIs
@@ -56,17 +64,18 @@ Here, token is stored in variable **AuthToken** for further use.
     * Authorization: Bearer {{AuthToken}}
 * Expected Response Code: 200 
 * Expected Response Data: Return all the workspace details in json format shown as below.
-```
-  [
-    {
+
+  ```
+   [
+      {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id":"workspaceId",
         "lastModified": 1563534310522,
         "name": "WorkspaceName",
         "userId": "pEGWCGwBjlTPLZEzy_-G"
-    }
-   ]
+      }
+    ]
    ```
 
 Here, random 'id' for workspace is stored in variable **workspaceId** for further use.
@@ -79,8 +88,9 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
     * Authorization: Bearer {{AuthToken}}
 * Expected Response Code: 200 
 * Expected Response Data: Return all the project details under specified workspace id in json format provided below.
-```
-  {
+
+  ```
+    {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id": "OWA7I2wB6ANMBjnljPXv",
@@ -90,7 +100,7 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
         "userId": "pEGWCGwBjlTPLZEzy_-G",
         "workspaceId" : "workspaceId"
     }
-```
+  ```
 
 #### To Create New Project : To create new project under specified workspaceid for the logged in user
 * HTTP Method: POST
@@ -99,6 +109,7 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
 * Body: 
+
     ```
     {
     "id": "",
@@ -114,8 +125,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
 * Expected Response Code: 200 
 * Expected Response Data: A project will be created under specified workspace id in json format provided below. A unique id is also generated for the project. 
 
-```
-  {
+  ```
+    {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id": "OWA7I2wB6ANMBjnljPXv",
@@ -124,8 +135,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
         "type" : "Design",
         "userId": "pEGWCGwBjlTPLZEzy_-G",
         "workspaceId" : "workspaceId"
-    }
-```
+     }
+  ```
 
 Here, the unique 'id' for new project is stored in variable **createdProjectID** for further use.
 
@@ -136,6 +147,7 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
 * Body: 
+
     ```
     {
     "created": 1563781812755,
@@ -150,8 +162,9 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
    ```
 * Expected Response Code: 200 
 * Expected Response Data: Project name will be created for specified project id in json format provided below.
-```
-  {
+
+  ```
+    {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id": "OWA7I2wB6ANMBjnljPXv",
@@ -161,7 +174,7 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
         "userId": "pEGWCGwBjlTPLZEzy_-G",
         "workspaceId" : "workspaceId"
     }
-```
+  ```
 
 #### To Delete Existing Project: To delete any existing project
 * HTTP Method: DELETE
@@ -179,17 +192,21 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
  
  1. Open Terminal and Go to Desktop and Copy-Paste the below command
  
-    > cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+    ```
+    cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+    ```
     
 2. To run the test and generate report using Jmeter, run the below command in Terminal.
 
      **UserName should be replaced before executing command**
    
-   > jmeter -g C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl -o C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report
+   ```
+   jmeter -g C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl -o C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report
+   ```
    
 3. Generated HTML Report can be found in 
 
-   C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report\index.html
+   **C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report\index.html**
    
 Test result is generated in html format.
 
