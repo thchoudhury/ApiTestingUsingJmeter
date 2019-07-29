@@ -124,8 +124,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
 * Expected Response Code: 200 
 * Expected Response Data: A project will be created under specified workspace id in json format provided below. A unique id is also generated for the project. 
 
-```
-  {
+   ```
+     {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id": "OWA7I2wB6ANMBjnljPXv",
@@ -134,8 +134,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
         "type" : "Design",
         "userId": "pEGWCGwBjlTPLZEzy_-G",
         "workspaceId" : "workspaceId"
-    }
-```
+     }
+   ```
 
 Here, the unique 'id' for new project is stored in variable **createdProjectID** for further use.
 
@@ -160,8 +160,8 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
    ```
 * Expected Response Code: 200 
 * Expected Response Data: Project name will be created for specified project id in json format provided below.
-```
-  {
+   ```
+     {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id": "OWA7I2wB6ANMBjnljPXv",
@@ -170,8 +170,8 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
         "type" : "Design",
         "userId": "pEGWCGwBjlTPLZEzy_-G",
         "workspaceId" : "workspaceId"
-    }
-```
+      }
+   ```
 
 #### To Delete Existing Project: To delete any existing project
 * HTTP Method: DELETE
@@ -187,11 +187,15 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
 
 1. Open Terminal and Go to Desktop and Copy-Paste the below command
 
-   > cd ApiTestingUsingJmeterAndPostman\UsingPostman
+   ```
+   cd ApiTestingUsingJmeterAndPostman\UsingPostman
+   ```
    
 2. To run test and generate test report using Newman, run below command in Terminal
 
-   > newman run tests/my_test.json -r html --reporter-html-export reports/test_result.html
+   ```
+   newman run tests/my_test.json -r html --reporter-html-export reports/test_result.html
+   ```
    
 3. All test results are found under reports/test_result.html
 
