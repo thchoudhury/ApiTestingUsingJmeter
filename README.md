@@ -60,7 +60,7 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
     "name": "{{projectName}}",
     "description": "{{description}}",
     "type": "DESIGN"
-   }```
+   ```
 * Response Code: 200 
 * Response Data: A project will be created under specified workspace id. A unique id is also generated for the project. 
 
@@ -82,7 +82,7 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
     "type": "DESIGN",
     "userId": "pEGWCGwBjlTPLZEzy_-G",
     "workspaceId": "q0eWCGwB6ANMBjnly4Xn"
-   }```
+   ```
 * Response Code: 200 
 * Response Data: Project name will be created for specified project id. 
 
