@@ -1,7 +1,8 @@
 # API Testing Using Jmeter And Postman
 
-## Description
+## Overview
 **OctoPerf** is a bootstrapped company, made by independent performance geeks. Which is why all our efforts are directed to the product.
+
 Here, APIs of Octoperf websites has been tested [using Jmeter](https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman/tree/master/UsingJmeter) and [using Postman](https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman/tree/master/UsingPostman)
 
 
