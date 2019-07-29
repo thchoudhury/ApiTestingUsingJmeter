@@ -44,8 +44,8 @@ Here, APIs of Octoperf websites has been tested using Postman and Newman(if CLI 
 * HTTP Method: POST
 * API:  https://api.octoperf.com/public/users/login
 * Body (form-data): username(string) && password(string)
-* Response Code: 200 
-* Response Data: {'token': <Generated Token Value (string format)>}
+* Expected Response Code: 200 
+* Expected Response Data: {'token': <Generated Token Value (string format)>}
 
 Here, token is stored in variable **AuthToken** for further use.
 
@@ -55,8 +55,20 @@ Here, token is stored in variable **AuthToken** for further use.
 * Headers:
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
-* Response Code: 200 
-* Response Data: Return all the workspace details.
+* Expected Response Code: 200 
+* Expected Response Data: Return all the workspace details in json format shown as below.
+```
+  [
+    {
+        "created": 1563534310522,
+        "description": "Workspace Description",
+        "id":"workspaceId",
+        "lastModified": 1563534310522,
+        "name": "WorkspaceName",
+        "userId": "pEGWCGwBjlTPLZEzy_-G"
+    }
+   ]
+   ```
 
 Here, random 'id' for workspace is stored in variable **workspaceId** for further use.
 
@@ -66,8 +78,20 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
 * Headers:
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
-* Response Code: 200 
-* Response Data: Return all the project details under specified workspace id.
+* Expected Response Code: 200 
+* Expected Response Data: Return all the project details under specified workspace id in json format provided below.
+```
+  {
+        "created": 1563534310522,
+        "description": "Workspace Description",
+        "id": "OWA7I2wB6ANMBjnljPXv",
+        "lastModified": 1563534310522,
+        "name": "Workspace Name",
+        "type" : "Design",
+        "userId": "pEGWCGwBjlTPLZEzy_-G",
+        "workspaceId" : "workspaceId"
+    }
+```
 
 #### To Create New Project : To create new project under specified workspaceid for the logged in user
 * HTTP Method: POST
@@ -76,7 +100,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
 * Body: 
-    ```{
+    ```
+    {
     "id": "",
     "created": "2019-07-22T07:50:12.755Z",
     "lastModified": "2019-07-22T07:50:12.755Z",
@@ -85,9 +110,23 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
     "name": "{{projectName}}",
     "description": "{{description}}",
     "type": "DESIGN"
+    }
    ```
-* Response Code: 200 
-* Response Data: A project will be created under specified workspace id. A unique id is also generated for the project. 
+* Expected Response Code: 200 
+* Expected Response Data: A project will be created under specified workspace id in json format provided below. A unique id is also generated for the project. 
+
+```
+  {
+        "created": 1563534310522,
+        "description": "Workspace Description",
+        "id": "OWA7I2wB6ANMBjnljPXv",
+        "lastModified": 1563534310522,
+        "name": "Workspace Name",
+        "type" : "Design",
+        "userId": "pEGWCGwBjlTPLZEzy_-G",
+        "workspaceId" : "workspaceId"
+    }
+```
 
 Here, the unique 'id' for new project is stored in variable **createdProjectID** for further use.
 
@@ -98,7 +137,8 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
 * Body: 
-    ```{
+    ```
+    {
     "created": 1563781812755,
     "description": "Project is running under test",
     "id": "a1jlGGwB5tgkpL6TQv30",
@@ -107,9 +147,22 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
     "type": "DESIGN",
     "userId": "pEGWCGwBjlTPLZEzy_-G",
     "workspaceId": "q0eWCGwB6ANMBjnly4Xn"
+    }
    ```
-* Response Code: 200 
-* Response Data: Project name will be created for specified project id. 
+* Expected Response Code: 200 
+* Expected Response Data: Project name will be created for specified project id in json format provided below.
+```
+  {
+        "created": 1563534310522,
+        "description": "Workspace Description",
+        "id": "OWA7I2wB6ANMBjnljPXv",
+        "lastModified": 1563534310522,
+        "name": "Workspace Name",
+        "type" : "Design",
+        "userId": "pEGWCGwBjlTPLZEzy_-G",
+        "workspaceId" : "workspaceId"
+    }
+```
 
 #### To Delete Existing Project: To delete any existing project
 * HTTP Method: DELETE
@@ -117,8 +170,8 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
 * Headers:
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
-* Response Code: 204
-* Response Data: None
+* Expected Response Code: 204
+* Expected Response Data: None
 
 
 ## To Generate Test Report
