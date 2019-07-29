@@ -4,7 +4,10 @@
 Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [using Jmeter](https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman/tree/master/UsingJmeter) and [using Postman](https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman/tree/master/UsingPostman)
 
 ## Getting Started
-* Open Terminal in your local system.
+
+* Open Terminal in your local system and redirect to Desktop
+> ```cd Desktop```
+
 * Copy and Paste the below command
 > ```git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>```
 
@@ -12,7 +15,7 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
  ### Install Jmeter
  #### Dependencies
 1. Install JAVA(8+)
-2. Downalod [Jmeter](http://jmeter.apache.org/download_jmeter.cgi).
+2. Downalod [Jmeter 5.1.1](http://jmeter.apache.org/download_jmeter.cgi) in Desktop
 3. Download [plugins-manager.jar](https://jmeter-plugins.org/get/) and put it into lib/ext directory, then restart JMeter.
 4. Install below plugin: a)JSON/YAML Plugins (deprecated) The installer will also install several JMeter Plugins, which can be used directly or within a continuous integration server such as Jenkins
 
@@ -23,6 +26,12 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 3. In terminal, run the below command to install Newman-html-reporter
 > npm i -g newman-reporter-html
 
+## To Run Tests
+#### Using Jmeter
+1. Open Terminal and Go to Desktop and Copy-Paste the below command
+> cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+2. To run the test in Jmeter, run the below command in Terminal
+> 
 
 ## List of Tested REST APIs
 
