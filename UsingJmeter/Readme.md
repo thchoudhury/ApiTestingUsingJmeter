@@ -169,8 +169,8 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
 * Headers:
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
-* Response Code: 204
-* Response Data: None
+* Expected Response Code: 204
+* Expected Response Data: None
 
 
 ## To Generate Test Report
