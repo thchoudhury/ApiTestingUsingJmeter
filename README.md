@@ -6,9 +6,11 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 ## Getting Started
 
 * Open Terminal in your local system and redirect to Desktop
+
   > ```cd Desktop```
 
 * Copy and Paste the below command
+
   > ```git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>```
 
 ## Prerequisites
@@ -21,24 +23,37 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 
  ### Install Postman & Newman
 1. Download [Postman](https://www.getpostman.com/apps)
+
 2. Open Terminal and run the below command to install Newman
+
    > npm install -g newman
+   
 3. In terminal, run the below command to install Newman-html-reporter
+
    > npm i -g newman-reporter-html
 
 ## To Run Tests
 
 #### Using Jmeter
+
 1. Open Terminal and Go to Desktop and Copy-Paste the below command
+
    > cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
-2. To run the test in Jmeter, run the below command in Terminal
-   **UserName should be replaced before executing command**
+   
+2. To run the test in Jmeter, run the below command in Terminal. 
+
+      **UserName should be replaced before executing command**
+      
    > jmeter -n -t C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\tests\my_test.jmx -l C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl
 
 #### Using Postman & Newman
+
 1. Open Terminal and Go to Desktop and Copy-Paste the below command
+
    > cd ApiTestingUsingJmeterAndPostman\UsingPostman
+   
 2. To run test using Newman, run below command in Terminal
+
    > newman run tests\my_test.json
 
 
@@ -130,18 +145,29 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
  #### Using Jmeter
  
  1. Open Terminal and Go to Desktop and Copy-Paste the below command
+ 
     > cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
-2. To run the test and generate report using Jmeter, run the below command in Terminal
-   **UserName should be replaced before executing command**
+    
+2. To run the test and generate report using Jmeter, run the below command in Terminal.
+
+     **UserName should be replaced before executing command**
+   
    > jmeter -g C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl -o C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report
+   
 3. Generated HTML Report can be found in 
+
    C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report\index.html
+   
 Test result is generated in html format.
 
 #### Using Postman and Newman
 
 1. Open Terminal and Go to Desktop and Copy-Paste the below command
+
    > cd ApiTestingUsingJmeterAndPostman\UsingPostman
+   
 2. To run test and generate test report using Newman, run below command in Terminal
+
    > newman run tests/my_test.json -r html --reporter-html-export reports/test_result.html
+   
 3. All test results are found under reports/test_result.html
