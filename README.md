@@ -59,7 +59,7 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 
 ## List of Tested REST APIs
 
-### Login API : For logging into the website with valid id and password
+#### Login API : For logging into the website with valid id and password
 * HTTP Method: POST
 * API:  https://api.octoperf.com/public/users/login
 * Body (form-data): username(string) && password(string)
@@ -68,7 +68,7 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 
 Here, token is stored in variable **AuthToken** for further use.
 
-### Get All Workspace Details : To get all the workspace details for the logged in user
+#### Get All Workspace Details : To get all the workspace details for the logged in user
 * HTTP Method: GET
 * API:  https://api.octoperf.com/workspaces/member-of
 * Headers:
@@ -79,7 +79,7 @@ Here, token is stored in variable **AuthToken** for further use.
 
 Here, random 'id' for workspace is stored in variable **workspaceId** for further use.
 
-### Get All Project Details : To get all the proejct details under specified workspaceid for the logged in user
+#### Get All Project Details : To get all the proejct details under specified workspaceid for the logged in user
 * HTTP Method: GET
 * API:  https://api.octoperf.com/design/projects/by-workspace/{{workspaceId}}/DESIGN
 * Headers:
@@ -88,7 +88,7 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
 * Response Code: 200 
 * Response Data: Return all the project details under specified workspace id.
 
-### To Create New Project : To create new project under specified workspaceid for the logged in user
+#### To Create New Project : To create new project under specified workspaceid for the logged in user
 * HTTP Method: POST
 * API:  https://api.octoperf.com/design/projects?workspaceId={{workspaceId}}
 * Headers:
@@ -110,7 +110,7 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
 
 Here, the unique 'id' for new project is stored in variable **createdProjectID** for further use.
 
-### Edit Created Project Name : To edit any project name under specified workspaceid for the logged in user
+#### To Edit Created Project Name : To edit any project name under specified workspaceid for the logged in user
 * HTTP Method: PUT
 * API: https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
 * Headers:
@@ -130,7 +130,7 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
 * Response Code: 200 
 * Response Data: Project name will be created for specified project id. 
 
-### To Delete Existing Project: To delete any existing project
+#### To Delete Existing Project: To delete any existing project
 * HTTP Method: DELETE
 * API:  https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
 * Headers:
