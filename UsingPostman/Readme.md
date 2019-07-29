@@ -7,12 +7,14 @@ Here, APIs of Octoperf websites has been tested using Postman and Newman(if CLI 
 ## Getting Started
 
 * Open Terminal in your local system and redirect to Desktop
-
-  > ```cd Desktop```
-
+   ```
+   cd Desktop
+   ```
 * Copy and Paste the below command
 
-  > ```git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>```
+   ```
+   git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>
+   ```
   
 * Open Terminal and Go to Desktop and Copy-Paste the below command
 
