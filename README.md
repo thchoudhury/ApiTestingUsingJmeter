@@ -5,15 +5,7 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 
 
 ## List of REST APIs
-* For Login => https://api.octoperf.com/public/users/login
-* Get All Workspace Details => https://api.octoperf.com/workspaces/member-of
-* Get All Project Details => https://api.octoperf.com/design/projects/by-workspace/{{workspaceId}}/DESIGN
-* To Create New Project => https://api.octoperf.com/design/projects?workspaceId={{workspaceId}}
-* Edit Created Project Name => https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
-* To Delete Existing Project => https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
 
-
-## Tested API Details
 ### Login API
 * HTTP Method: POST
 * API:  https://api.octoperf.com/public/users/login
