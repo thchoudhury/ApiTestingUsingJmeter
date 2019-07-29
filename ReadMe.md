@@ -7,11 +7,15 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 
 * Open Terminal in your local system and redirect to Desktop
 
-  > ```cd Desktop```
+  ```
+  cd Desktop
+  ```
 
 * Copy and Paste the below command
 
-  > ```git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>```
+   ```
+   git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>
+   ```
 
 ## Prerequisites
  ### Install Jmeter
@@ -26,11 +30,15 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 
 2. Open Terminal and run the below command to install Newman
 
-   > npm install -g newman
+   ```
+   npm install -g newman
+   ```
    
 3. In terminal, run the below command to install Newman-html-reporter
 
-   > npm i -g newman-reporter-html
+   ```
+   npm i -g newman-reporter-html
+   ```
 
 ## To Run Tests
 
@@ -38,23 +46,31 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 
 1. Open Terminal and Go to Desktop and Copy-Paste the below command
 
-   > cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+    ```
+    cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+    ```
    
 2. To run the test in Jmeter, run the below command in Terminal. 
 
       **UserName should be replaced before executing command**
       
-   > jmeter -n -t C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\tests\my_test.jmx -l C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl
+    ```
+    jmeter -n -t C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\tests\my_test.jmx -l C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl
+    ```
 
 #### Using Postman & Newman
 
 1. Open Terminal and Go to Desktop and Copy-Paste the below command
 
-   > cd ApiTestingUsingJmeterAndPostman\UsingPostman
+   ```
+   cd ApiTestingUsingJmeterAndPostman\UsingPostman
+   ```
    
 2. To run test using Newman, run below command in Terminal
 
-   > newman run tests\my_test.json
+   ```
+   newman run tests\my_test.json
+   ```
 
 
 ## List of Tested REST APIs
@@ -99,8 +115,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
     * Authorization: Bearer {{AuthToken}}
 * Expected Response Code: 200 
 * Expected Response Data: Return all the project details under specified workspace id in json format provided below.
-```
-  {
+   ```
+    {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id": "OWA7I2wB6ANMBjnljPXv",
@@ -109,8 +125,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
         "type" : "Design",
         "userId": "pEGWCGwBjlTPLZEzy_-G",
         "workspaceId" : "workspaceId"
-    }
-```
+     }
+    ```
 
 #### To Create New Project : To create new project under specified workspaceid for the logged in user
 * HTTP Method: POST
@@ -134,8 +150,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
 * Expected Response Code: 200 
 * Expected Response Data: A project will be created under specified workspace id in json format provided below. A unique id is also generated for the project. 
 
-```
-  {
+  ```
+     {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id": "OWA7I2wB6ANMBjnljPXv",
@@ -145,7 +161,7 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
         "userId": "pEGWCGwBjlTPLZEzy_-G",
         "workspaceId" : "workspaceId"
     }
-```
+    ```
 
 Here, the unique 'id' for new project is stored in variable **createdProjectID** for further use.
 
@@ -170,8 +186,9 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
    ```
 * Expected Response Code: 200 
 * Expected Response Data: Project name will be created for specified project id in json format provided below.
-```
-  {
+ 
+  ```
+   {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id": "OWA7I2wB6ANMBjnljPXv",
@@ -180,8 +197,8 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
         "type" : "Design",
         "userId": "pEGWCGwBjlTPLZEzy_-G",
         "workspaceId" : "workspaceId"
-    }
-```
+      }
+  ```
 
 #### To Delete Existing Project: To delete any existing project
 * HTTP Method: DELETE
@@ -199,17 +216,21 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
  
  1. Open Terminal and Go to Desktop and Copy-Paste the below command
  
-    > cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+    ```
+    cd apache-jmeter-5.1.1\apache-jmeter-5.1.1\bin
+    ```
     
 2. To run the test and generate report using Jmeter, run the below command in Terminal.
 
      **UserName should be replaced before executing command**
    
-   > jmeter -g C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl -o C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report
+   ```
+   jmeter -g C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\results\my_test.jtl -o C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report
+   ```
    
 3. Generated HTML Report can be found in 
 
-   C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report\index.html
+  **C:\Users\<UserName>\Desktop\ApiTestingUsingJmeterAndPostman\UsingJmeter\reports\my_test_report\index.html**
    
 Test result is generated in html format.
 
@@ -217,10 +238,14 @@ Test result is generated in html format.
 
 1. Open Terminal and Go to Desktop and Copy-Paste the below command
 
-   > cd ApiTestingUsingJmeterAndPostman\UsingPostman
+   ```
+   cd ApiTestingUsingJmeterAndPostman\UsingPostman
+   ```
    
 2. To run test and generate test report using Newman, run below command in Terminal
 
-   > newman run tests/my_test.json -r html --reporter-html-export reports/test_result.html
+   ```
+   newman run tests/my_test.json -r html --reporter-html-export reports/test_result.html
+   ```
    
 3. All test results are found under reports/test_result.html
