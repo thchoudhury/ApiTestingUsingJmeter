@@ -3,10 +3,30 @@
 ## Overview
 Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [using Jmeter](https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman/tree/master/UsingJmeter) and [using Postman](https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman/tree/master/UsingPostman)
 
+## Getting Started
+* Open Terminal in your local system.
+* Copy and Paste the below command
+> ```git clone <https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman.git>```
+
+## Prerequisites
+ ### Install Jmeter
+ #### Dependencies
+1. Install JAVA(8+)
+2. Downalod [Jmeter](http://jmeter.apache.org/download_jmeter.cgi).
+3. Download [plugins-manager.jar](https://jmeter-plugins.org/get/) and put it into lib/ext directory, then restart JMeter.
+4. Install below plugin: a)JSON/YAML Plugins (deprecated) The installer will also install several JMeter Plugins, which can be used directly or within a continuous integration server such as Jenkins
+
+ ### Install Postman & Newman
+1. Download [Postman](https://www.getpostman.com/apps)
+2. Open Terminal and run the below command to install Newman
+> npm install -g newman
+3. In terminal, run the below command to install Newman-html-reporter
+> npm i -g newman-reporter-html
+
 
 ## List of Tested REST APIs
 
-### Login API
+### Login API : For logging into the website with valid id and password
 * HTTP Method: POST
 * API:  https://api.octoperf.com/public/users/login
 * Body (form-data): username(string) && password(string)
@@ -15,7 +35,7 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 
 Here, token is stored in variable **AuthToken** for further use.
 
-### Get All Workspace Details
+### Get All Workspace Details : To get all the workspace details for the logged in user
 * HTTP Method: GET
 * API:  https://api.octoperf.com/workspaces/member-of
 * Headers:
@@ -26,7 +46,7 @@ Here, token is stored in variable **AuthToken** for further use.
 
 Here, random 'id' for workspace is stored in variable **workspaceId** for further use.
 
-### Get All Project Details
+### Get All Project Details : To get all the proejct details under specified workspaceid for the logged in user
 * HTTP Method: GET
 * API:  https://api.octoperf.com/design/projects/by-workspace/{{workspaceId}}/DESIGN
 * Headers:
@@ -35,7 +55,7 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
 * Response Code: 200 
 * Response Data: Return all the project details under specified workspace id.
 
-### To Create New Project
+### To Create New Project : To create new project under specified workspaceid for the logged in user
 * HTTP Method: POST
 * API:  https://api.octoperf.com/design/projects?workspaceId={{workspaceId}}
 * Headers:
@@ -57,7 +77,7 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
 
 Here, the unique 'id' for new project is stored in variable **createdProjectID** for further use.
 
-### Edit Created Project Name
+### Edit Created Project Name : To edit any project name under specified workspaceid for the logged in user
 * HTTP Method: PUT
 * API: https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
 * Headers:
@@ -77,7 +97,7 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
 * Response Code: 200 
 * Response Data: Project name will be created for specified project id. 
 
-### To Delete Existing Project
+### To Delete Existing Project: To delete any existing project
 * HTTP Method: DELETE
 * API:  https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
 * Headers:
@@ -85,10 +105,6 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
     * Authorization: Bearer {{AuthToken}}
 * Response Code: 204
 * Response Data: None
-
-## To Generate Test Result
-Test result is generated in html format.
-
 
 
 ## Test Result
