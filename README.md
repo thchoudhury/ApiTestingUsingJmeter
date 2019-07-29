@@ -4,7 +4,7 @@
 Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [using Jmeter](https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman/tree/master/UsingJmeter) and [using Postman](https://github.com/thchoudhury/ApiTestingUsingJmeterAndPostman/tree/master/UsingPostman)
 
 
-## List of REST APIs
+## List of Tested REST APIs
 
 ### Login API
 * HTTP Method: POST
