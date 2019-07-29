@@ -36,5 +36,8 @@ Here, APIs of [Octoperf](https://doc.octoperf.com/) websites has been tested [us
 * API:  https://api.octoperf.com/design/projects/{{createdProjectID}}?workspaceId={{workspaceId}}
 * Response Code: 204
 
-## To Generate Test Result
+
+
+## Test Result
+
 Test result is generated in html format.
