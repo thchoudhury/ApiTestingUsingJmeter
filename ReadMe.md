@@ -92,18 +92,19 @@ Here, token is stored in variable **AuthToken** for further use.
     * Authorization: Bearer {{AuthToken}}
 * Expected Response Code: 200 
 * Expected Response Data: Return all the workspace details in json format shown as below.
-```
-  [
-    {
+  
+   ```
+     [
+       {
         "created": 1563534310522,
         "description": "Workspace Description",
         "id":"workspaceId",
         "lastModified": 1563534310522,
         "name": "WorkspaceName",
         "userId": "pEGWCGwBjlTPLZEzy_-G"
-    }
-   ]
-   ```
+       }
+     ]
+    ```
 
 Here, random 'id' for workspace is stored in variable **workspaceId** for further use.
 
@@ -135,7 +136,8 @@ Here, random 'id' for workspace is stored in variable **workspaceId** for furthe
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
 * Body: 
-    ```
+   
+   ```
     {
     "id": "",
     "created": "2019-07-22T07:50:12.755Z",
@@ -172,6 +174,7 @@ Here, the unique 'id' for new project is stored in variable **createdProjectID**
     * Content-Type: application/json;charset=UTF-8
     * Authorization: Bearer {{AuthToken}}
 * Body: 
+    
     ```
     {
     "created": 1563781812755,
